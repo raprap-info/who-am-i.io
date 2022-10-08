@@ -10,28 +10,24 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
  	
 <script>
-async function saveFile() {
+function blobajax () {
   // (A) CREATE BLOB OBJECT
   var myBlob = new Blob(["CONTENT"], {type: "text/plain"});
- 
- //FORM DATA
 
-var data = new FormData();
-data.append("upfile",myBlob);
+  // (B) FORM DATA
+  var data = new FormData();
+  data.append("upfile", myBlob);
 
-//AJAX UPLOAD
-
-var xhr = new XMLHttpRequest();
-xhr.open("POST", "https://raprap-info.github.io/who-am-i.io/upload.php");
-xhr.onload = function() {
-	console.log(this.response);
-};
-
-xhr.send(data);
+  // (C) AJAX UPLOAD TO SERVER
+  fetch("3b-upload.php", {
+    method: "POST",
+    body: data
+  })
+  .then((res) => { return res.text(); })
+  .then((txt) => { console.log(txt); });
+}
 </script>
-
-<input type="button" value="Save File" onclick="saveFile()"/>
-
+<input type="button" value="Go" onclick="blobajax()"/>
 	
 </body>
 </html>
