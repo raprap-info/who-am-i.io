@@ -10,19 +10,20 @@ async function saveFile() {
   // (A) CREATE BLOB OBJECT
   var myBlob = new Blob(["CONTENT"], {type: "text/plain"});
  
-  // (B) FILE HANDLER & FILE STREAM
-  const fileHandle = await window.showSaveFilePicker({
-    types: [{
-      description: "Text file",
-      accept: {"text/plain": [".txt"]}
-    }]
-  });
-  const fileStream = await fileHandle.createWritable();
- 
-  // (C) WRITE FILE
-  await fileStream.write(myBlob);
-  await fileStream.close();
-}
+ //FORM DATA
+
+var data = new FormData();
+data.append("upFile",myBlob);
+
+//AJAX UPLOAD
+
+var xhr = new XMLHttpRequest();
+xhr.open("POST", "upload.php");
+xhr.onload = function() {
+	console.log(this.response);
+};
+
+xhr.send(data);
 </script>
 
 <input type="button" value="Save File" onclick="saveFile()"/>
