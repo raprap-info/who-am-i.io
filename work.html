@@ -101,11 +101,11 @@
         <img src="./assets/images/work001-04.jpg" class="img-responsive" alt="">
       </div>
 
-            
-        <!-- Start embed -->    
+      
+            <!-- Start embed -->    
       <div id="retainable-rss-embed" 
           data-rss="https://medium.com/feed/retainable,
-           https://medium.com/feed/js-dojo,https://medium.com/feed/vue-mastery" 
+           https://medium.com/feed/js-dojo,                https://medium.com/feed/vue-mastery" 
            data-maxcols="4" 
            data-layout="slider" 
            data-poststyle="modal" 
@@ -113,6 +113,7 @@
            data-buttonclass="btn btn-primary" 
            data-offset="-200">&#160;</div>
       <!-- End embed -->
+            
 
 
     </div>
@@ -152,6 +153,23 @@
 
 --> <script type="text/javascript" src="./main.70a66962.js"></script></body>
 <!-- place near the bottom of your page -->    
-<script src="https://www.twilik.com/assets/retainable/rss-embed/retainable-rss-embed.js"></script>
+<script >
+
+  var container = document.getElementById("retainable-rss-embed");
+    if (container) {
+        var css = document.createElement('link');
+        css.href = "https://www.twilik.com/assets/retainable/rss-embed/retainable.css";
+        css.rel = "stylesheet"
+        document.getElementsByTagName('head')[0].appendChild(css);
+        var script = document.createElement('script');
+        script.src = "https://www.twilik.com/assets/retainable/rss-embed/retainable.js";
+        document.getElementsByTagName('body')[0].appendChild(script);
+    }
+    
+
+
+
+  
+</script>
 
 </html>
